@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube RAG Blog Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> YouTube RAG Blog Generator</h1>
+            <p>Transform YouTube videos into engaging blog posts using advanced AI</p>
+            <div class="tech-stack">
+                <span class="tech-badge">RAG</span>
+                <span class="tech-badge">LlamaIndex</span>
+                <span class="tech-badge">LangChain</span>
+                <span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Vector DB</span>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <div class="server-status" id="server-status">
+                <div class="status-dot"></div>
+                <span id="server-status-text">Checking server...</span>
+            </div>
+            <div class="input-group">
+                <label for="youtube-url">YouTube Video URL</label>
+                <input type="text" id="youtube-url" placeholder="https://www.youtube.com/watch?v=..." />
+            </div>
+            <button class="btn" id="generate-btn">Generate Blog Post</button>
+        </div>
+
+        <div class="results-section" id="results-section" style="display: none;">
+            <div class="result-card">
+                <h3> Video Transcript</h3>
+                <div class="result-content" id="transcript-content"></div>
+            </div>
+            <div class="result-card">
+                <h3> Summary</h3>
+                <div class="result-content" id="summary-content"></div>
+            </div>
+        </div>
+
+        <div class="blog-section" id="blog-section" style="display: none;">
+            <h2>📚 Generated Blog Post</h2>
+            <div class="blog-content" id="blog-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
