@@ -126,7 +126,7 @@ body {
 }
 
 .btn:disabled {
-    background: #ccc;
+    background: #3b3939;
     cursor: not-allowed;
     transform: none;
 }
