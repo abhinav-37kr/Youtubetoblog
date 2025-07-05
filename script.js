@@ -144,7 +144,7 @@ generateBtn.addEventListener('click', handleGenerate);
 
 async function handleGenerate() {
     const url = youtubeUrl.value.trim();
-    const apiKey = "your-api-key-here"; // Replace with your OpenAI API key
+    const apiKey = ""; // Replace with your OpenAI API key
 
     if (!url) {
         showError('Please enter a YouTube URL');

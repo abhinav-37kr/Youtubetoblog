@@ -14,6 +14,8 @@ import os
 import re
 import openai
 from typing import Optional
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 
 # FastAPI app initialization
 app = FastAPI(title="YouTube RAG Blog Generator API", version="1.0.0")
@@ -92,7 +94,7 @@ async def extract_transcript(request: YouTubeRequest):
             raise HTTPException(status_code=400, detail="Invalid YouTube URL")
         
         # Get transcript
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id,languages=["en","hi","ml"])
         transcript_text = " ".join([entry['text'] for entry in transcript_list])
         
         return TranscriptResponse(
@@ -122,11 +124,11 @@ async def generate_summary(request: YouTubeRequest):
         if not video_id:
             raise HTTPException(status_code=400, detail="Invalid YouTube URL")
         
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id,languages=["en","hi","ml"])
         transcript_text = " ".join([entry['text'] for entry in transcript_list])
         
         # Create temporary file for transcript
-        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".txt") as f:
+        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".txt", encoding="utf-8") as f:
             f.write(transcript_text)
             temp_path = f.name
         
@@ -174,11 +176,11 @@ async def generate_blog(request: YouTubeRequest):
         if not video_id:
             raise HTTPException(status_code=400, detail="Invalid YouTube URL")
         
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id,languages=["en","hi","ml"])
         transcript_text = " ".join([entry['text'] for entry in transcript_list])
         
         # Create temporary file
-        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".txt") as f:
+        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".txt", encoding="utf-8") as f:
             f.write(transcript_text)
             temp_path = f.name
         
@@ -236,11 +238,11 @@ async def process_complete(request: YouTubeRequest):
         if not video_id:
             raise HTTPException(status_code=400, detail="Invalid YouTube URL")
         
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id,languages=["en","hi","ml"])
         transcript_text = " ".join([entry['text'] for entry in transcript_list])
         
         # Create temporary file
-        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".txt") as f:
+        with tempfile.NamedTemporaryFile(mode="w+", delete=False, suffix=".txt", encoding="utf-8") as f:
             f.write(transcript_text)
             temp_path = f.name
         
